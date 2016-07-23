@@ -1,13 +1,120 @@
 <!doctype html>
-
 <html lang="en">
-<head>
-  <meta charset="utf-8">
-  <title>Music History</title>
-</head>
-
-<body>
-
-
-</body>
+	<head>
+		<meta charset="utf-8">
+		<link rel="stylesheet" href="styles.css">
+		<title>Music History</title>
+	</head>
+	<body>
+		<div class="container">
+			<header class="header">
+				<ul>
+					<li>View Music</li>
+					<li>
+						<a href="#">Add Music</a>
+					</li>
+					<li>
+						<a href="#">Profile</a>
+					</li>
+				</ul>
+			</header>
+			<div class="sidebar">
+				<form action="">
+					<div class="sidebar-section">
+						<div>
+							<span>Song length:</span>
+						</div>
+						<div>
+							<input type="range" />
+						</div>
+					</div>
+					<div class="sidebar-section">
+						<div><span>Artist:</span></div>
+						<div><select name="artist" id="artist">
+							<option value="artist1">Artist 1</option>
+							<option value="artist2">Artist 2</option>
+							<option value="artist3">Artist 3</option>
+						</select></div>
+					</div>
+					<div class="sidebar-section">
+						<div><span>Album:</span></div>
+						<div><select name="album" id="album">
+							<option value="album1">Album 1</option>
+							<option value="album2">Album 2</option>
+							<option value="album3">Album 3</option>
+						</select></div>
+						
+					</div>
+					<div class="sidebar-section">
+						<div><span>Genre:</span></div>
+						<div class="genre-radios">
+							<label class="radio-group">
+								<input type="radio" name="genre" value="rock" class="radio-group">Rock
+							</label>
+							<br>
+							<label class="radio-group">
+								<input type="radio" name="genre" value="pop" class="radio-group">Pop
+							</label>
+							<br>
+							<label class="radio-group">
+								<input type="radio" name="genre" value="blues" class="radio-group">Blues
+							</label>
+							<br>
+						</div>
+						<div class="genre">
+							<label>
+								<input type="radio" name="genre" value="classical" class="radio-group">Classical
+							</label>
+							<br>
+							<label>
+								<input type="radio" name="genre" value="jazz" class="radio-group">Jazz
+							</label>
+							<br>
+							<label>
+								<input type="radio" name="genre" value="hiphop" class="radio-group">Hip hop
+							</label>
+							<br>
+						</div>
+					</div>
+					<div class="filter-button">
+						<button type="submit">Filter</button>
+					</div>
+				</form>
+			</div>
+			<div class="content">
+				<article>
+					<h2>Song Name</h2>
+					<ul>
+						<li>Artist name</li>
+						<li>Album name</li>
+						<li>Genre</li>
+					</ul>
+				</article>
+				<article>
+					<h2>Song Name</h2>
+					<ul>
+						<li>Artist name</li>
+						<li>Album name</li>
+						<li>Genre</li>
+					</ul>
+				</article>
+				<article>
+					<h2>Song Name</h2>
+					<ul>
+						<li>Artist name</li>
+						<li>Album name</li>
+						<li>Genre</li>
+					</ul>
+				</article>
+				<article>
+					<h2>Song Name</h2>
+					<ul>
+						<li>Artist name</li>
+						<li>Album name</li>
+						<li>Genre</li>
+					</ul>
+				</article>
+			</div>
+		</div>
+	</body>
 </html>
