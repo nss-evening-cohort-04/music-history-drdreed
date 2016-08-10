@@ -1,85 +1,86 @@
-ul
-{
-    margin: 0;
-    padding: 0;
+ul {
+  margin  : 0;
+  padding : 0;
 }
 
-ul li
-{
-    list-style-type: none;
-    display: inline;
+ul li {
+  display         : inline;
+  list-style-type : none;
 }
 
 li:before {
-content: " | ";
+  content : " | ";
 }
 
 li:first-child:before {
-content: none;
+  content : none;
 }
 
 /* CONTAINER */
 
 .container {
-	font-family: Arial, Helvetica, sans-serif;
+  font-family : Arial,
+                Helvetica,
+                sans-serif;
 }
 
 /* HEADER */
+
 .header {
-	background-color: #FFB4B0;
-	border: 2px solid black;
-	padding: 20px;
-	box-sizing: border-box;
+  box-sizing       : border-box;
+  padding          : 20px;
+  border           : 2px solid black;
+  background-color : #FFB4B0;
 }
 
 /* SIDEBAR */
+
 .sidebar {
-	position: relative;
-	width: 20%;
-	background-color: #4DD7FA;
-	border: 2px solid black;
-	float:left;	
-	box-sizing: border-box;
-	margin-right: 2.5%;
-	margin-top: 2.5%;
-	padding: 20px;
+  box-sizing       : border-box;
+  position         : relative;
+  width            : 20%;
+  float            : left;
+  margin-top       : 2.5%;
+  margin-right     : 2.5%;
+  padding          : 20px;
+  border           : 2px solid black;
+  background-color : #4DD7FA;
 }
 
-.sidebar input[type="range"] {
-	width 75%;
-}
+.sidebar input[type="range"] {}
 
 .radio-group {
-	/* display: block; */
+  /* display: block; */
 }
 
-.genre-radios{
-	width: 50%;
-	float:left;
+.genre-radios {
+  width : 50%;
+  float : left;
 }
 
 .sidebar-section {
-	margin: 10px 0;
+  margin : 10px 0;
 }
 
 .filter-button {
-	clear:both;
-	text-align: center;
+  clear      : both;
+  text-align : center;
 }
 
 /* CONTENT */
+
 .content {
-	width:77.5%;
-	position:relative;
-	background-color: #FEFAC0;
-	float: right;
-	border: 2px solid black;
-	box-sizing: border-box;
-	margin-top: 2.5%;
-	padding: 20px;
+  box-sizing       : border-box;
+  position         : relative;
+  width            : 77.5%;
+  float            : right;
+  margin-top       : 2.5%;
+  padding          : 20px;
+  border           : 2px solid black;
+  background-color : #FEFAC0;
 }
 
 .content h2 {
-	font-weight: normal;
-	color: #785616;
+  color       : #785616;
+  font-weight : normal;
 }
