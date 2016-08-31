@@ -94,3 +94,7 @@ li:first-child:before {
   margin: 0 auto;
   margin-top: 100px;
 }
+
+#load-more {
+  margin-top: 25px;
+}

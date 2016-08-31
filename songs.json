@@ -1,0 +1,32 @@
+{
+  "songs": [
+    {
+      "id": 1,
+      "title": "Legs",
+      "artist": "ZZTop",
+      "album": "Eliminator",
+      "genre": "Rock"
+    },
+    {
+      "id": 2,
+      "title": "The Logical Song",
+      "artist": "Supertramp",
+      "album": "Breakfast in America",
+      "genre": "Progressive rock"
+    },
+    {
+      "id": 3,
+      "title": "Another Brick in the Wall",
+      "artist": "Pink Floyd",
+      "album": "The Wall",
+      "genre": "Rock"
+    },
+    {
+      "id": 4,
+      "title": "Welcome to the Jungle",
+      "artist": "Guns & Roses",
+      "album": "Appetite for Destruction",
+      "genre": "Rock"
+    }
+  ]
+}
