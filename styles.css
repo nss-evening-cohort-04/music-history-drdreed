@@ -84,3 +84,13 @@ li:first-child:before {
   color       : #785616;
   font-weight : normal;
 }
+
+.hidden {
+  display: none;
+}
+
+#add-music-view {
+  width: 300px;
+  margin: 0 auto;
+  margin-top: 100px;
+}
