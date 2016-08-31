@@ -1,27 +1,38 @@
-var songs = [];
+let songs;
 
-songs[0] = "Legs > by Z*ZTop on the album Eliminator";
-songs[1] = "The Logical Song > by Supertr@amp on the album Breakfast in America";
-songs[2] = "Another Brick in the Wall > by Pink Floyd on the album The Wall";
-songs[3] = "Welco(me to the Jungle > by Guns & Roses on the album Appetite for Destruction";
-songs[4] = "Ironi!c > by Alanis Moris*ette on the album Jagged Little Pill";
+function loadSongs() {
+  let data = JSON.parse(this.response);
+  songs = data.songs;
+  renderSongs();
+}
 
-songs.unshift("Granddaddy's Gun > by Aaron Lewis on the album The Road");
-songs.push("Straight Outta Cold Beer > by Blake Shelton on the album If I'm Honest");
+function failSongs() {
+  console.log("Failed to load songs!");
+}
+
+var getSongs = new XMLHttpRequest();
+getSongs.addEventListener("load", loadSongs);
+getSongs.addEventListener("error", failSongs);
+getSongs.open("GET", "songs.json");
+getSongs.send();
 
 var finalStr = "";
 var content = document.getElementById("content");
 
 function renderSongs() {
   let songList = songs.map((song)=>{
-    song.replace(">", "-");
-    song.replace("@","");
-    song.replace("!","");
-    song.replace("*","");
-    song.replace("(","");
-    return "<p>" + song + "</p>";
+    return `
+    <div>
+      <h2>${song.title}</h2>
+      <div>${song.artist} | ${song.album} | ${song.genre}</div>
+      <button type="button" class="delete-button">Delete</button>
+    </div>
+    `;
   }).join("");
   content.innerHTML = songList;
+  content.innerHTML += `<button type="button" name="button" id="load-more">More ></button>`;
+  addEventListeners();
+
 }
 
 var addMusicLink = document.getElementById('add-music-link');
@@ -46,12 +57,50 @@ function addSong() {
   let songName = document.getElementById('song-name').value;
   let songArtist = document.getElementById('song-artist').value;
   let songAblum = document.getElementById('song-album').value;
-
-  songs.push(`${songName} > by ${songArtist} on the album ${songAblum}`);
+  var newSong = {};
+  newSong.id = "";
+  newSong.title = songName;
+  newSong.artist = songArtist;
+  newSong.album = songAblum;
+  newSong.genre = "";
+  songs.push(newSong);
   console.log('songs', songs);
   renderSongs();
 }
 
-document.getElementById('addBtn').addEventListener('click', addSong);
+function addEventListeners() {
+  var classname = document.getElementsByClassName("delete-button");
+  for (var i = 0; i < classname.length; i++) {
+    classname[i].addEventListener('click', deleteSongNode, false);
+  }
+  document.getElementById('load-more').addEventListener('click', moreSongs);
+}
 
-renderSongs();
+function deleteSongNode(e) {
+  let childNode = e.currentTarget.parentNode;
+  childNode.parentNode.removeChild(childNode);
+}
+
+function moreSongs() {
+
+  function loadMoreSongs() {
+    let data = JSON.parse(this.response);
+    let moreSongs = data.songs;
+    moreSongs.map((song) => {
+      songs.push(song);
+    });
+    renderSongs();
+  }
+
+  function failMoreSongs() {
+    console.log('Failed to load more songs!');
+  }
+
+  var getSongs = new XMLHttpRequest();
+  getSongs.addEventListener("load", loadMoreSongs);
+  getSongs.addEventListener("error", failMoreSongs);
+  getSongs.open("GET", "songs1.json");
+  getSongs.send();
+}
+
+document.getElementById('addBtn').addEventListener('click', addSong);

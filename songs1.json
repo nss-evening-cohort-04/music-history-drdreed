@@ -1,0 +1,25 @@
+{
+  "songs": [
+    {
+      "id": 5,
+      "title": "Ironic",
+      "artist": "Alanis Morisette",
+      "album": "Jagged Little Pill",
+      "genre": "Alternative rock"
+    },
+    {
+      "id": 6,
+      "title": "Granddaddy's Gun",
+      "artist": "Aaron Lewis",
+      "album": "The Road",
+      "genre": "Country"
+    },
+    {
+      "id": 7,
+      "title": "Straight Outta Cold Beer",
+      "artist": "Blake Shelton",
+      "album": "If I'm Honest",
+      "genre": "Country"
+    }
+  ]
+}
