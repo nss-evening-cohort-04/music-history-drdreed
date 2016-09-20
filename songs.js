@@ -1,25 +1,18 @@
 let songs;
-
-function loadSongs() {
-  let data = JSON.parse(this.response);
-  songs = data.songs;
-  renderSongs();
+function loadSongs(songData) {
+  songs = songData.songs;
+  renderSongs(songs);
 }
 
 function failSongs() {
   console.log("Failed to load songs!");
 }
 
-var getSongs = new XMLHttpRequest();
-getSongs.addEventListener("load", loadSongs);
-getSongs.addEventListener("error", failSongs);
-getSongs.open("GET", "songs.json");
-getSongs.send();
-
+var getSongs = $.ajax("songs.json").done(loadSongs).fail(failSongs);
 var finalStr = "";
-var content = document.getElementById("content");
+var content = $("#content");
 
-function renderSongs() {
+function renderSongs(songs) {
   let songList = songs.map((song)=>{
     return `
     <div>
@@ -29,34 +22,32 @@ function renderSongs() {
     </div>
     `;
   }).join("");
-  content.innerHTML = songList;
-  content.innerHTML += `<button type="button" name="button" id="load-more">More ></button>`;
+  $("#content").html(songList);
+  $(`<button type="button" name="button" id="load-more">More ></button>`).appendTo(content);
   addEventListeners();
-
 }
 
-var addMusicLink = document.getElementById('add-music-link');
-var viewMusicLink = document.getElementById('view-music-link');
+var addMusicLink = $('#add-music-link');
+var viewMusicLink = $('#view-music-link');
 
-var addMusicView = document.getElementById('add-music-view');
-var listMusicView = document.getElementById('list-music-view');
+var addMusicView = $('#add-music-view');
+var listMusicView = $('#list-music-view');
 
-addMusicLink.addEventListener('click', function (e) {
+addMusicLink.click(function (e) {
   e.preventDefault();
-  addMusicView.classList.remove('hidden');
-  listMusicView.classList.add('hidden');
+  addMusicView.removeClass('hidden');
+  listMusicView.addClass('hidden');
 });
 
-viewMusicLink.addEventListener('click', function (e) {
-  e.preventDefault();
-  addMusicView.classList.add('hidden');
-  listMusicView.classList.remove('hidden');
+viewMusicLink.click(function (e) {
+  addMusicView.addClass('hidden');
+  listMusicView.removeClass('hidden');
 });
 
 function addSong() {
-  let songName = document.getElementById('song-name').value;
-  let songArtist = document.getElementById('song-artist').value;
-  let songAblum = document.getElementById('song-album').value;
+  let songName = $('#song-name').val();
+  let songArtist = $('#song-artist').val();
+  let songAblum = $('#song-album').val();
   var newSong = {};
   newSong.id = "";
   newSong.title = songName;
@@ -65,42 +56,32 @@ function addSong() {
   newSong.genre = "";
   songs.push(newSong);
   console.log('songs', songs);
-  renderSongs();
+  renderSongs(songs);
 }
 
 function addEventListeners() {
-  var classname = document.getElementsByClassName("delete-button");
-  for (var i = 0; i < classname.length; i++) {
-    classname[i].addEventListener('click', deleteSongNode, false);
-  }
-  document.getElementById('load-more').addEventListener('click', moreSongs);
+  $(document).on('click', '.delete-button', deleteSongNode);
+  $('#load-more').click(moreSongs);
 }
 
-function deleteSongNode(e) {
-  let childNode = e.currentTarget.parentNode;
-  childNode.parentNode.removeChild(childNode);
+function deleteSongNode() {
+  $( this ).parent().remove();
 }
 
-function moreSongs() {
+function moreSongs(){
+  $.ajax("songs1.json").done(loadMoreSongs).fail(failMoreSongs);
+}
 
-  function loadMoreSongs() {
-    let data = JSON.parse(this.response);
-    let moreSongs = data.songs;
-    moreSongs.map((song) => {
+function loadMoreSongs(moreSongs) {
+    let songs1 = moreSongs.songs;
+    songs1.map((song) => {
       songs.push(song);
     });
-    renderSongs();
-  }
-
-  function failMoreSongs() {
-    console.log('Failed to load more songs!');
-  }
-
-  var getSongs = new XMLHttpRequest();
-  getSongs.addEventListener("load", loadMoreSongs);
-  getSongs.addEventListener("error", failMoreSongs);
-  getSongs.open("GET", "songs1.json");
-  getSongs.send();
+  renderSongs(songs);
 }
 
-document.getElementById('addBtn').addEventListener('click', addSong);
+function failMoreSongs() {
+  console.log('Failed to load more songs!');
+}
+
+$('#addBtn').click(addSong);
